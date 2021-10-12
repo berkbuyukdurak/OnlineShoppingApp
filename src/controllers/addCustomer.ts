@@ -1,18 +1,25 @@
 /**
  * This is the controller of addCustomer request.
  */
-import {Request, Response, NextFunction} from 'express';
-import axios, {AxiosResponse} from 'axios';
-import { Get, Route } from '@tsoa/runtime';
+import { Get, Route, Tags, Post, Body, Path } from "tsoa";
+import {Customer} from "../models/customer";
+import {
+    getCustomers,
+    createCustomer,
+    ICustomerPayload
+} from "../repositories/customer";
 
-interface AddCustomerResponse{
-    message: String;
-}
+@Route("customers")
+@Tags("Customer")
+export default class CustomerController{
+    
+    @Get("/getCustomers")
+    public async getCustomers(): Promise<Array<Customer>>{
+        return getCustomers();
+    }
 
-export default class AddCustomerResponseController{
-    public async getMessage(): Promise<AddCustomerResponse>{
-        return{
-            message: "Customer is added!",
-        }
+    @Post("/addCustomer")
+    public async createCustomer(@Body() body: ICustomerPayload): Promise<Customer> {
+        return createCustomer(body);
     }
 }

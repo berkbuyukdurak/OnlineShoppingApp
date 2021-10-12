@@ -1,8 +1,9 @@
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import express, { Application } from "express";
+import swaggerUi from "swagger-ui-express";
 import morgan from "morgan";
-import Router from "./routes/routes";
+import Router from "./routes/index";
 import dbConfig from "./config/db";
 import errorMiddleware from "./middlewares/error.middleware";
 
@@ -14,6 +15,16 @@ app.use(express.json());
 app.use(morgan("tiny"));
 app.use(express.static("public"));
 app.use(errorMiddleware);
+
+app.use(
+  "/docs",
+  swaggerUi.serve,
+  swaggerUi.setup(undefined, {
+    swaggerOptions: {
+      url: "/swagger.json",
+    },
+  })
+);
 
 app.use(Router);
 
