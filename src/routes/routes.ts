@@ -1,4 +1,5 @@
 import express from "express";
+import { appendFile } from "fs";
 import AddCustomerController from "../controllers/addCustomer";
 
 const router = express.Router();
@@ -13,10 +14,32 @@ router.get("/addCustomer", async (_req, res) => {
 });
 
 /**
+ * Add Product Route
+ */
+
+/**
+ * Update a Product Route
+ */
+
+/**
+ * Make an Order Route
+ */
+
+/**
+ * List Customer Order Route
+ */
+
+/**
+ * Get Details of Customer Order Route
+ */
+
+/**
  * Welcome Route for the App
  */
 router.get("/", async (_req, res) =>{
-
+    
 });
+
+
 
 export default router;

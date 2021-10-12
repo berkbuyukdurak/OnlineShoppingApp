@@ -3,6 +3,7 @@
  */
 import {Request, Response, NextFunction} from 'express';
 import axios, {AxiosResponse} from 'axios';
+import { Get, Route } from '@tsoa/runtime';
 
 interface AddCustomerResponse{
     message: String;
