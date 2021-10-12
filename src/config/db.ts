@@ -1,4 +1,5 @@
 import { ConnectionOptions } from "typeorm";
+import { Customer, Product, Order } from "../models";
 
 const config: ConnectionOptions = {
     type: "postgres",
@@ -6,8 +7,12 @@ const config: ConnectionOptions = {
     port: Number(process.env.POSTGRES_PORT) || 5432,
     username: process.env.POSTGRES_USER || "postgres",
     password: process.env.POSTGRES_PASSWORD || "postgres",
-    database: process.env.POSTGRES_DB || "postgres",
-    entities: [],
+    database: process.env.POSTGRES_DB || "ekinoks",
+    entities: [
+        Customer,
+        Product,
+        Order
+    ],
     synchronize: true,
 };
 
